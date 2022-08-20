@@ -5,8 +5,8 @@ import os
 import sys
 import time
 from sys import platform
-from  colorama import Fore, Back, Style
-from art import tprint, FONT_NAMES
+from colorama import Fore, Back, Style
+from art import tprint
 
 def read_database(filename):
     '''Open database and load the data in file'''
@@ -30,6 +30,7 @@ def show_text_line(msg, fcolor, bcolor):
     print(fcolor + bcolor + msg + Style.RESET_ALL)
 
 def clearscreen():
+    '''check the OS and clear the terminal screen'''
     if platform == "linux" or platform == "linux2":
         os.system('clear')
     elif platform == "darwin":
@@ -38,10 +39,10 @@ def clearscreen():
         os.system('cls')
 
 def intro_animation():
+    '''startup animation'''
     clearscreen()
-    #print (FONT_NAMES)
     tprint("Amazing text adventure by Peer", "tombstone")
-    show_text_line("-" * 120, Fore.RESET, Back.RESET)
+    show_text_line(("-" * 99) + " 20 August 2022 -", Fore.RESET, Back.RESET)
     show_text_line("as if i would need to load the Database", Fore.LIGHTRED_EX, Back.RESET)
     for i in range(6):
         print(".", end="", flush=True)
@@ -90,7 +91,7 @@ def main(filename):
                         return_flag = True
                     # is item a question?
                     if "_" in game_stage:                       
-                        show_text_line(f"" + question.strip("\n"), Fore.LIGHTGREEN_EX, Back.RESET)
+                        show_text_line(question.strip("\n"), Fore.LIGHTGREEN_EX, Back.RESET)
                         show_text_line("", Fore.RESET, Back.RESET)
                         found_entries = True                        
                     # is item an option
@@ -101,12 +102,13 @@ def main(filename):
                         max_options += 1
                 elif choice == game_stage[:game_deepness_level-1]:  # proper round!
                     # is Return scripted?
+                    
                     if "r" in game_stage.lower():
                         return_flag = True
                         
                     # is item a question?
                     if "_" in game_stage:
-                        show_text_line(f"" + question.strip("\n"), Fore.LIGHTGREEN_EX, Back.RESET)
+                        show_text_line(question.strip("\n"), Fore.LIGHTGREEN_EX, Back.RESET)
                         show_text_line("", Fore.RESET, Back.RESET)
                         found_entries = True
                     # is item an option
@@ -146,8 +148,6 @@ def main(filename):
                 quit_the_game()
             else:
                 game_deepness_level -= 1
-
-
 
 #//--------------------------//#
 #   Start the main game loop   #
