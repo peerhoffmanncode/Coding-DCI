@@ -1,0 +1,37 @@
+# This is a simple database
+# use # to comment a full line
+# use [_][any number] to indicate a question or statement
+# use numbers to create branches. Think of rows...
+# end of game will happen when a branch has no options left!
+# use the ; to separate the branch number from the text!
+# Avoid the ; in the TEXT !
+
+_;You're in a dark alley. Where do you go?
+1;left
+2;straight
+3;right
+
+1_;u go left and die
+
+2_;u go straight and there is another crossing
+
+3_;u go right and theres a wall you can't pass
+3r;are ou like to return?
+
+21;you see a man standing at the street and you ask him for his name
+22;you see a man standing at the street and start a fight
+23;it is to dark so you can't really see if it is a man, go come closer
+2r;you are unsure and go back
+
+21_;you approach the man...
+211;the man tells you his name is Dave and he wants you to follow him
+21r;you don't like to talk to the man any further and leave back
+
+22_;you approach the man...
+221;the man gets ready for a fist fight, you are so too
+22r;you get scared and leave
+
+23_;you approach the crossing...
+231;you see that there are two men, you want to talk
+232;you hear a noise beside you, are you going to look?
+23r;you get scared and leave
