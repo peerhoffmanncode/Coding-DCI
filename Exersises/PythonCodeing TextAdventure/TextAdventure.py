@@ -2,6 +2,7 @@
 the user made change the course of the story.'''
 
 import os
+import sys
 from sys import platform
 from  colorama import Fore, Back, Style
 
@@ -122,5 +123,10 @@ def main(filename):
 
 if __name__ == '__main__':
     FILENAME = "game.db"
-    
-    main(FILENAME)
+    if os.path.exists(FILENAME):
+            main(FILENAME)
+    else:
+        show_text_line("[Error] >> Could not find game.db !!! ", Fore.RED, Back.WHITE)
+        show_text_line("Program is looking for game.db in [" +os.getcwd()+ "]", Fore.RESET, Back.RESET)
+        show_text_line("", Fore.RESET, Back.RESET)
+        sys.exit()
