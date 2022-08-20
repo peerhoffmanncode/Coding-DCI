@@ -43,7 +43,7 @@ def main(filename):
     database_dict = read_database(filename)
     
     #set level of question deepness to ground!
-    game_deepness_level = 0
+    game_deepness_level = 0                             
     # no chose was taken yet!       
     choice = ""
     
