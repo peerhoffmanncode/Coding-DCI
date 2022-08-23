@@ -23,10 +23,12 @@ def read_database(filename):
                 database_dict[key] = val
     return database_dict
 
+
 def show_text_line(msg, fcolor, bcolor):
     '''little function to print text with color
        might be replaced in order for a GUI'''
     print(fcolor + bcolor + msg + Style.RESET_ALL)
+    
 
 def clearscreen():
     '''check the OS and clear the terminal screen'''
@@ -36,6 +38,7 @@ def clearscreen():
         os.system('clear')
     elif platform == "win32":
         os.system('cls')
+        
 
 def intro_animation():
     '''startup animation'''
@@ -48,54 +51,46 @@ def intro_animation():
     for i in range(6):
         print(".", end="", flush=True)
         time.sleep(0.35)
-        
-def winning_animation():
-    '''winning animation'''
-    clearscreen()
-    tprint("Amazing ... you have won ! :-)", "tombstone")
-    show_text_line(("-" * 99) + " 20 August 2022 -",
-                   Fore.RESET, Back.RESET)
 
-    time.sleep(0.35 * 5)
-    sys.exit()
 
-    
-def loosing_animation():
-    clearscreen()
-    tprint("Sorry you lost the game ....", "tombstone")
-    show_text_line(("-" * 99) + " 20 August 2022 -",
-                   Fore.RESET, Back.RESET)
-    
-    time.sleep(0.35 * 5)
-    sys.exit()
-    
 def message_animation(message_to_player):
     '''message animation'''
     clearscreen()
     tprint(message_to_player, "tombstone")
-    show_text_line(("-" * 99) + " 20 August 2022 -",
-                   Fore.RESET, Back.RESET)
-    
-    time.sleep(0.35 * 5)
-    clearscreen()
+    time.sleep(0.09 * len(message_to_player))
+    clearscreen()  
 
+
+def winning_animation():
+    '''winning animation'''
+    clearscreen()
+    message_animation("Amazing ... you have won ! :-)")
+    time.sleep(1)
+    sys.exit()
+
+
+def loosing_animation():
+    clearscreen()
+    message_animation("Sorry you lost the game ....")
+    time.sleep(1)
+    sys.exit()
+    
 
 def quit_the_game():
     show_text_line("bye bye! ...", 
-                   Fore.RESET, Back.RESET)
-    
+                   Fore.RESET, Back.RESET)  
     time.sleep(2)
     clearscreen()
     sys.exit()
 
 
-def main(filename):
+def main(db_filename):
     '''Main game loop function'''
 
     # Initial game state >> create DB Dict key:str :value:str
     database_dict = {}
     # Initial game state >> load game database
-    database_dict = read_database(filename)
+    database_dict = read_database(db_filename)
 
     # Initial game state >> set level of question deepness to ground!
     game_deepness_level = 0
@@ -143,11 +138,9 @@ def main(filename):
                     
                     elif "r" in game_stage.lower():
                         # indicate the return to last level flag was found!
-                        show_text_line(question.strip("\n"),
-                                       Fore.LIGHTGREEN_EX, Back.RESET)
-                        show_text_line("", 
-                                       Fore.RESET, Back.RESET)
                         return_flag = True
+                        show_text_line(f"choose [{(game_stage[game_deepness_level-1:game_deepness_level]).upper()}] : "
+                                       + question.strip("\n"), Fore.RESET, Back.RESET)
                         found_entries = True
                         max_options += 1
     
@@ -166,19 +159,8 @@ def main(filename):
                         found_entries = True
                         max_options += 1
 
-            # options are to advanced yet?
-            # elif len(game_stage) > game_deepness_level:         # maybe get rid of this check?
-            #     break
-
-        if found_entries is False:
+        if found_entries is False or max_options < 1:
             # can't find any new question! End of game.
-            show_text_line("you reached the end of the game...",
-                           Fore.RESET, Back.RESET)
-            show_text_line("", 
-                           Fore.RESET, Back.RESET)
-            break
-
-        if max_options < 1:
             # no options to chose from! End of game.
             show_text_line("you reached the end of the game...",
                            Fore.RESET, Back.RESET)

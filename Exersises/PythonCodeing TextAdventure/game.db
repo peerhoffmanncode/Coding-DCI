@@ -20,21 +20,23 @@
 
 # Story starts here
 
-?;Perfect, you are here!
-_;You're in a dark alley. Where do you want to go?
+?;You're in a dark alley. It is foggy ...
+_;You are at a crossing. Where do you want to go?
 1;left
 2;straight
 3;right
-4;you are nervous and decide to smoke
+4;you are nervous and decide to smoke first
 
+1?;Waaaaaaaaaahhhhhhhhhmmmmm....
 1_;you go left and die by a giant wrecking ball crossing the street!
 
+2?;You quietly start to walk ...
 2_;you go straight and there is another crossing
 
 3_;you go right and there is a wall you can't pass
 3r;are you like to return?
 
-4_;aahhh, that was nice ...
+4_;aahhh, that cigaret was nice ...
 
 21;you see a man standing at the street and you like to ask him for his name
 22;you see a man standing at the street and you are about to start a fight
