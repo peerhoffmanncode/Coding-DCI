@@ -1,18 +1,31 @@
 # This is a simple database
-# use # to comment a full line
+
+# Commands:
+
+# use [#] or ['] to comment a full line
 # use [_] (underscore) to indicate a question or statement
+# use [*] (asterisk) to indicate a winning outcome
+# use [$] (dollar) to indicate a losing outcome
+# use [?] to print out a message to the player before the next level
+# use [r] to indicate this is an option to return to the level before
+
+# Usage to handle the story :
 # use numbers to create branches. Think of rows...
 # use the lenght of branches in a ascending way (1, 2, 3, 11, 12, 21, 22, 23, 31, ... 111, 112, 113, ... 334, 335, ...)
-# end of game will happen when a branch has no options left!
+# end of game will happen when a branch has no options left, or you set the winning/ loosing sign!
+
 # use the [;] (semicolon) to separate the branch number from the text!
 # Avoid the [;] (semicolon) in the text !
 
+
+# Story starts here
+
+?;Perfect, you are here!
 _;You're in a dark alley. Where do you want to go?
 1;left
 2;straight
 3;right
 4;you are nervous and decide to smoke
-
 
 1_;you go left and die by a giant wrecking ball crossing the street!
 
