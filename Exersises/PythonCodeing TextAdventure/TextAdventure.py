@@ -119,8 +119,8 @@ def main(filename):
                         max_options += 1
 
             # options are to advanced yet?
-            elif len(game_stage) > game_deepness_level:         # mybe get rid of this check?
-                break
+            # elif len(game_stage) > game_deepness_level:         # mybe get rid of this check?
+            #     break
 
         if found_entries is False:                              # can't find any new question! End of game.
             show_text_line("you reached the end of the game...", Fore.RESET, Back.RESET)
