@@ -65,7 +65,7 @@ def main(filename):
 
     #set level of question deepness to ground!
     game_deepness_level = 0                             
-    # no chose was taken yet!       
+    # no chose was taken yet!
     choice = ""
 
     # while loop begin
@@ -90,10 +90,10 @@ def main(filename):
                     if "r" in game_stage.lower():
                         return_flag = True
                     # is item a question?
-                    if "_" in game_stage:                       
+                    if "_" in game_stage:
                         show_text_line(question.strip("\n"), Fore.LIGHTGREEN_EX, Back.RESET)
                         show_text_line("", Fore.RESET, Back.RESET)
-                        found_entries = True                        
+                        found_entries = True
                     # is item an option
                     else:                                       
                         show_text_line(f"choose [{game_stage}] : " 
@@ -119,7 +119,7 @@ def main(filename):
                         max_options += 1
 
             # options are to advanced yet?
-            elif len(game_stage) > game_deepness_level:
+            elif len(game_stage) > game_deepness_level:         # mybe get rid of this check?
                 break
 
         if found_entries is False:                              # can't find any new question! End of game.
