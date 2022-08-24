@@ -13,14 +13,14 @@ city = "London"
 print (city)
 
 # 002
-city = "Berlin"
+city = "berlin"
 population = 3645000
-print (city + " " + str(population))
+print (city.capitalize() + ": " + str(population))
 
 # 003
 city = "london".capitalize()
-population = population = 3645000
-print (city, city.isalpha())
+population = 3645000
+print ("city: " + city, "("+str(city.isalpha())+")")
 print (population)
 
 # 004
