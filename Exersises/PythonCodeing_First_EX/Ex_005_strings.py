@@ -11,7 +11,7 @@ def inatorInator(text):
         inator = "-inator "
     else:
         inator = "inator "
-    return text + inator  + str(len((text))) + "000"
+    return text + inator + str(len((text))) + "000"
 
 
 
