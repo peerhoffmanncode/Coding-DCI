@@ -7,10 +7,14 @@
 
 
 ## Input --> Output
-print("")
-your_phrase = input("say something nice :")
-print("")
-if len(your_phrase) % 2 == 0:
-    print("[" + your_phrase + "] is an even string")
-else:
-    print("[" + your_phrase + "] is an odd string")
+your_phrase = ""
+while your_phrase != "end":
+    print("")
+    your_phrase = input("say something nice [end = quit/exit]: ")
+    print("")
+    if len(your_phrase) % 2 == 0:
+        print("[" + your_phrase + "] is an even string")
+    else:
+        print("[" + your_phrase + "] is an odd string")
+        
+    print (f"{len(your_phrase): 10}")
