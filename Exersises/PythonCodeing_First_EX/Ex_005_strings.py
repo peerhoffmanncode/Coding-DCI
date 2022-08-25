@@ -7,7 +7,11 @@
 ## Input / Output
 
 def inatorInator(text):
-    return text + "inator " + str(len((text))) + "000"
+    if text[-1].lower() == "a" or text[-1].lower() == "e" or text[-1].lower() == "i" or text[-1].lower() == "o" or text[-1].lower() == "u":
+        inator = "-inator "
+    else:
+        inator = "inator "
+    return text + inator  + str(len((text))) + "000"
 
 
 
