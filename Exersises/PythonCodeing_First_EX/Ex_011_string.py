@@ -19,3 +19,13 @@ print("")
 print(find_and_replace("A dogmatic dog buys dogecoin to become rich and buy\
                        hotdogs every day.", "dog", "cat"))
 print("")
+
+
+### alternative
+#var = "dog"
+var = "cat"
+
+print("")
+print(find_and_replace(f"A dogmatic {var} buys dogecoin to become rich and buy\
+                       hotdogs every day.", "dog", "cat"))
+print("")
