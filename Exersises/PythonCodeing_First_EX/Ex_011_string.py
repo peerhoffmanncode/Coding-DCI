@@ -16,5 +16,6 @@ def find_and_replace(input_string: str, search_string: str, replace_string: str)
 
 
 print("")
-print(find_and_replace("A dogmatic dog buys dogecoin to become rich and buy hotdogs every day.", "dog", "cat"))
+print(find_and_replace("A dogmatic dog buys dogecoin to become rich and buy\
+                       hotdogs every day.", "dog", "cat"))
 print("")
