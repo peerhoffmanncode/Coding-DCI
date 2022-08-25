@@ -6,15 +6,24 @@
 
 ## Input / Output
 
-def inatorInator(text):
-    if text[-1].lower() == "a" or text[-1].lower() == "e" or text[-1].lower() == "i" or text[-1].lower() == "o" or text[-1].lower() == "u":
+def inatorInator(text:str):
+    """
+    Function to check if a given words last char is a consonant.
+    If so add inator, else -inator
+    return with len of the given word and add "000" to the line
+    """
+    if (   text[-1].lower() == "a"
+        or text[-1].lower() == "e"
+        or text[-1].lower() == "i"
+        or text[-1].lower() == "o"
+        or text[-1].lower() == "u"):
         inator = "-inator "
     else:
         inator = "inator "
-    return text + inator + str(len((text))) + "000"
+    return text + inator  + str(len((text))) + "000"
 
 
-
+# Test some words and print them out
 print(inatorInator("Shrink"))
 print(inatorInator("Doom"))
 print(inatorInator("EvilClone"))
