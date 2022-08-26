@@ -10,4 +10,4 @@
 # ```
 
 List = ["bananas", "apples", "milk", "mycoolnewstuff"]
-print(",".join(List))
+print(", ".join(List))
