@@ -15,7 +15,7 @@ import datetime
 
 def normalize(User_String):
     """ Function to normalize a user string
-        if date is 22 october, do nothing
+        If the date is 22 october, do nothing!
         return normalized User_String on any other day
         """
     # get current date
