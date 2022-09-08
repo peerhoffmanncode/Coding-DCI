@@ -1,9 +1,25 @@
 ''' Calculation Program '''
 
-import os
+import sys
+print (sys.argv)
 
-# clear terminal
-os.system("clear")
+if len(sys.argv) != 4 or sys.argv[1].isnumeric() is False or sys.argv[3].isnumeric() is False:
+    print("pleasee enter two numbers and a mathematical symbol [+, -, /, x]!")
+    print("eg: 5 + 5")
+    print("")
+    sys.exit()
+    
+number1 = float(sys.argv[1])
+number2 = float(sys.argv[3])
+
+options = ["+", "-", "/", "x"]
+if sys.argv[2] in options:
+    choices = sys.argv[2]
+else:
+    print("pleasee enter two numbers and a mathematical symbol!")
+    print("eg: 5 + 5")
+    print("")
+    sys.exit()
 
 def addition(n1, n2):
     ''' function to add n1 and n2 '''
@@ -23,30 +39,6 @@ def multi(n1, n2):
 
 def main():
     ''' main function '''
-    
-    while True:
-        number1 = (input("please enter number one : "))
-        if number1.isnumeric() is False: 
-            print ("Please enter a number!")
-        else:
-            number1 = float(number1)
-            break
-
-    while True:
-        number2 = (input("please enter number two : "))
-        if number2.isnumeric() is False: 
-            print ("Please enter a number!")
-        else:
-            number2 = float(number2)
-            break
-
-    options = ["1", "2", "3", "4", "+", "-", "/", "*"]    
-    while True:
-        choices = input("(1) to add, (2) to subtract, (3) to divide, (4) to multiply :")
-        if choices in options:
-            break
-        else:
-            print("Unknown operation!")
 
     if choices == "1" or choices == "+":
         result = addition(number1, number2)
@@ -61,9 +53,9 @@ def main():
         else:
             print ("Devision by zero is not allowed !")
             result = "invalid!"
-    elif choices == "4" or choices == "*":
+    elif choices == "4" or choices == "x":
         result = multi(number1, number2)
-        SYMBOL = "*"
+        SYMBOL = "x"
 
     print(f"Your result for {number1} {SYMBOL} {number2} is {result}")
 
