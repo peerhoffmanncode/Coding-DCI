@@ -10,15 +10,35 @@ import os
 
 os.system("clear")
 
-parser = argparse.ArgumentParser(description='Arguments')
-parser.add_argument('--fast', help='fast mode enabled', action='store_true')
-parser.add_argument('first_name', type=str, metavar='[FIRST NAME]', default="Larry", help='Enter your first name', nargs="?")
-parser.add_argument('last_name', type=str, metavar='[LAST NAME]', default="Hanson", help='Enter your last name', nargs="?")
-parser.add_argument('age', type=int, metavar='[AGE]', default=100, help='Enter your age', nargs="?")
+parser = argparse.ArgumentParser(description="Arguments")
+
+parser.add_argument("--fast", help="fast mode enabled", action="store_true")
+
+parser.add_argument(
+    "first_name",
+    type=str,
+    metavar="[FIRST NAME]",
+    default="Larry",
+    help="Enter your first name",
+    nargs="?",
+)
+parser.add_argument(
+    "last_name",
+    type=str,
+    metavar="[LAST NAME]",
+    default="Hanson",
+    help="Enter your last name",
+    nargs="?",
+)
+parser.add_argument(
+    "age", type=int, metavar="[AGE]", default=100, help="Enter your age", nargs="?"
+)
 
 args = parser.parse_args()
-#print(args.first_name, args.last_name, args.age, args.fast)
 
-print(f"Hello {args.first_name} {args.last_name}! I see that you have had {args.age+1} birthdays.")
-if args.fast:
+print(
+    f"Hello {args.first_name} {args.last_name}!"
+    f"\nI see that you have had {args.age+1} birthdays."
+)
+if args.fast is True:
     print("Hell yeah and you are on your fast mode !!!")
