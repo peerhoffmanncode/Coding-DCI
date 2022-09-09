@@ -13,7 +13,7 @@ os.system("clear")
 parser = argparse.ArgumentParser(description="Arguments")
 
 # -- fast argument
-parser.add_argument("--fast", help="fast mode enabled", action="store_true")
+parser.add_argument("--fast", help="enable the fast mode", action="store_true")
 
 # firstname argument
 parser.add_argument(
