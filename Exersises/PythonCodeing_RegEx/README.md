@@ -55,10 +55,7 @@ Use the `text` variable from the previous task. Create a regular expression to l
 
 - Your result should look like this:
 
-```
-(0, 6)
-```
-
+```#print(result)
 ### Task 6
 
 Create a variable called `text` to store the data: `The rain in Spain.`. Count how many times the subphrase `ai` appears in the string. Print the results on the screen.
