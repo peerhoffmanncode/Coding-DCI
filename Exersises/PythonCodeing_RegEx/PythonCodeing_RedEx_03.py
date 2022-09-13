@@ -20,7 +20,7 @@ print("\n ### Task 3 ###\n")
 text = "Berlin is a city of culture."
 pattern= r"\s"
 subln = "-"
-result = re.sub(pattern, subln,text)
+result = re.sub(pattern, subln, text)
 print(result)
 
 ### Task 4 ###
