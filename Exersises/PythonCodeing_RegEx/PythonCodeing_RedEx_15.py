@@ -1,7 +1,7 @@
 import re
 
 def is_mathematical(input_str:str) -> bool:
-    p = r"\d+\s*(\+|\-|\*|\/)\s*\d+"
+    p = r"\d+\s*(\+|\-|\*|\/|%)\s*\d+"
     r = re.search(p, input_str.strip())
 
     if r is None:

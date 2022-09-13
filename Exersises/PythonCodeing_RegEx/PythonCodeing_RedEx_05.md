@@ -1,7 +1,7 @@
 1. colou?r  
 --> color or colour
 
-Explanation: this RegEx will match both versions of the word "Color" or Colour".
+Explanation: this RegEx will ma^(?=.\*[a-z])(?=.\*[A-Z])(?=.\*\d).{6,12}$ ch both versions of the word "Color" or Colour".
 The ? means the u is 0 to 1 times in the word. 
 
 
