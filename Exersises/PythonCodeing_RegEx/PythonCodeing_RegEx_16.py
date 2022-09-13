@@ -1,17 +1,24 @@
 import re
 
 def make_happy(input_str:str) -> str:
-    faces = [r":", r";", r"8", r"x"]
-    p = r"?=(\:|\;|8|x)\("  
-    sub_p = r"(\:|\;|8|x))" 
-    input_str = re.sub(p, sub_p, input_str)
-    return input_str
-    # for f in faces:
-    #     p = f+r"\("  (\:|\;|\8|\x)
-    #     sub_p = f+r")"
-    #     input_str = re.sub(p, sub_p, input_str)
-    # return input_str
+    ''' function that makes a sad string happy '''
+    
+    # list of eyes
+    eyes = [r":", r";", r"8", r"x"]
 
+    # for loop over eyes
+    for e in eyes:
+        # build regex pattern
+        p = e + r"\("
+        # build regex substitution string
+        sub_p = e + r")"
+        # find sad faces and make'em happy
+        input_str = re.sub(p, sub_p, input_str)
+    
+    # return the happy string
+    return input_str
+
+# run very sad tests and hope to be happy 
 print(make_happy("(My current mood: :(8(;(x("))
 print(make_happy("I was hungry 8("))
 print(make_happy("print('x('"))
