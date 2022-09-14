@@ -19,3 +19,6 @@ lst = ["5 + 2", "9 * 1", "hello world", "123", "5 + foo", "234982734 / 238498374
 
 for i in lst:
     print(is_mathematical(i))
+    
+# One lineer
+# re.match("\\d+\\s?[\\+\\*/%-]\\s?\\d+", given_string)

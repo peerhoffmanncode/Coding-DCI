@@ -15,3 +15,8 @@ lst = ["0023.07623070", "hello world", "01230"]
 
 for i in lst:
     print(remove_leading_zero(i))
+    
+    
+    
+# Oneline
+# re.sub("^0*(\\d+\\.\\d*?[1-9])0*$", r"\1", given_string)

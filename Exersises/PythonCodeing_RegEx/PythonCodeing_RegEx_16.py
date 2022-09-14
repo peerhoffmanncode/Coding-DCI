@@ -23,3 +23,6 @@ print(make_happy("(My current mood: :(8(;(x("))
 print(make_happy("I was hungry 8("))
 print(make_happy("print('x('"))
 print(make_happy("round(3.4)"))
+
+# Oneliner
+# re.sub("(?<=[:8x;])\(",')',txt)
