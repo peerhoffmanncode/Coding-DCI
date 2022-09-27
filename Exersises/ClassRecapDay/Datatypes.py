@@ -1,13 +1,9 @@
 ### Datatypes ###
 
-
 # int - mutable
-from datetime import date
-
 
 x = 1
 #print(type(x))
-
 
 # float - mutable
 x = 1.0
@@ -33,7 +29,7 @@ x = x + ("new stuff",)
 #print("x:", type(x), x)
 
 # dictionary - mutable
-#fruite store
+#fruits store
 ###    KEY    VALUE
 x = {"apple": 10,
      "banana": 6,

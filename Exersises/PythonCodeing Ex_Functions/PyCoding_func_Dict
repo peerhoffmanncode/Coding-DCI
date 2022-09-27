@@ -1,0 +1,10 @@
+name_dic = {"Some_dudes_firstname": "Some_dudes_lastname"}  ## Global scope
+
+# "Pass by reference" variables can change
+def full_name(name_dic):                                    ## Argument is referenced
+    # variations 
+    name_dic["Some_dudes_firstname"] = "Hoffmann"           ## Local scope, but Dict is referenced
+    return name_dic
+
+full_name(name_dic)
+print(f"Full name {name_dic}")
