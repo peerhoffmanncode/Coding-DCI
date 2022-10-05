@@ -13,6 +13,18 @@ def digit_filter(data:list) -> list:
             tmp.append(item) # include valid item!
     return tmp
 
+
+def digit_filter_victor(original):
+  new = []
+  for string in original:
+    if any(char for char in string if char.isdigit()):
+      continue
+    else:
+      new.append(string)
+  return new
+
+
+
 # data given
 l33t = ['Digital Car33r Institute',
         'DCI',
