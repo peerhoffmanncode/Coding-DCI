@@ -1,19 +1,21 @@
-def get(data, path):
-    ''' function to pars down to a given path '''
-    # copy data to safe in global scope
-    work = data.copy()
-    pars_lst = path.split(".")
+def get(work, path):
+    ''' function to find nested data in a give datatype
+        data is the datatype
+        path is the path to the value to find
+        '''
+    pars_list = path.split(".")
     #p = pars_lst[0]
-    for p in pars_lst:
+    for node in pars_list:
         # p holds current segment of the path
-        if str(p).isdigit():
-            p = int(p)
-        # subset of datatype(list/dict) will be new datatye(list/dict) now
-        work = work[p]
+        if str(node).isdigit():
+            node = int(node)
+        # subset of datatype(list/dict) will be new datatype(list/dict) now
+        work = work[node]
     # return item(s)!
     return work
 
 
+### Test cases
 data = {
   'students': [
     {

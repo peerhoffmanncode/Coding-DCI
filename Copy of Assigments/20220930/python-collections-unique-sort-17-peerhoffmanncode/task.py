@@ -28,6 +28,7 @@ strings = ['Digital',
            'another_wired_testcase' # added tis to be sure!
            'Lecture',
            'Exercise',
+           'aaaaaaaaaaaaa'
            ]
 
 print("Unsorted input:", strings)

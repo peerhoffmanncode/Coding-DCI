@@ -3,14 +3,14 @@ def get(data, path):
         data is the datatype
         path is the path to the value to find
         '''
-    pars_lst = path.split(".")
-    p = pars_lst[0]
+    parsing_list = path.split(".")
+    p = parsing_list[0]
 
     if str(p).isdigit():
         p = int(p)
 
-    if len(pars_lst) > 1:
-        result = get(data[p], ".".join(pars_lst[1:]))
+    if len(parsing_list) > 1:
+        result = get(data[p], ".".join(parsing_list[1:]))
     else:
         result = data[p]
     return result
