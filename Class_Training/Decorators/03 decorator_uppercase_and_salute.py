@@ -29,3 +29,21 @@ def greetings(name):
     return name
 
 print(greetings("fausto doe"))
+
+
+
+### Part 3 ###################
+def add_mr(function):
+    def inner(name):
+        name = f"Mr/Mrs {name}"
+        return function(name)
+    return inner        
+
+# use a decorator/closure
+@add_mr
+@make_title
+def greet_some_humans(name):
+    # API, Test driven development
+    return "Good morning " + name    
+
+print(greet_some_humans('wojciech doe'))
