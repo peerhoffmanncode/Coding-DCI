@@ -20,5 +20,3 @@ def outer_with_arg(name):
     return inner
 
 print(outer_with_arg("bibo")())
-
-

@@ -15,4 +15,21 @@ print(mul(1, 2))
 
 a_string = lambda name, prefix: f"{prefix.title()} {name.title()}."
 
-print (a_string("bibo", "Da mighty emperor"))
+print(a_string("bibo", "Da mighty emperor"))
+
+
+### lambda within decorator
+
+ # def inner(a, b):
+    #     if b == 0:
+    #         return "null division!"
+    #     return func(a,b)
+    # return inner
+def check_divisor(func):
+    return lambda a, b: "null division!" if b == 0 else func(a, b)
+
+@check_divisor
+def divide(a, b):
+    return a / b
+
+print(divide(10, 0))
