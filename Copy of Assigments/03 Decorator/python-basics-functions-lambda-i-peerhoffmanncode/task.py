@@ -16,9 +16,9 @@ print()
 print("#### Task 2 ##########################")
 print()
 
-isOdd = lambda x: not bool(x % 2)
-isEven = lambda x: bool(x % 2)
-getParity = lambda x, parity: True if not bool(x % 2) and parity == "even" else False
+isOdd = lambda x: bool(x % 2)
+isEven = lambda x: not bool(x % 2)
+getParity = lambda x, parity: True if (not bool(x % 2) and parity == "even") or ( bool(x % 2) and parity == "odd") else False
 
 print(isOdd(2), isEven(2))
 print(isOdd(1), isEven(1))

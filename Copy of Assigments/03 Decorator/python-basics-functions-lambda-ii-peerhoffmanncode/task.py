@@ -69,20 +69,15 @@ print("#### Task 4 ##########################")
 print()
 
 
-def wrap_with(tag="strong"):
+def wrap_with(tag=""):
     """decorator factory"""
-
     def decorator(func):
         """decorator function for HTML tags"""
-        strong = lambda *args, **kwargs: f"<strong>{func(*args, **kwargs)}</strong>"
-        em = lambda *args, **kwargs: f"<em>{func(*args, **kwargs)}</em>"
-        p = lambda *args, **kwargs: f"<p>{func(*args, **kwargs)}</p>"
-        if tag == "strong":
-            return strong
-        elif tag == "em":
-            return em
-        elif tag == "p":
-            return p
+        if tag:
+            return lambda *args, **kwargs: f"<{tag}>{func(*args, **kwargs)}</{tag}>"
+
+        else: # added else for unknown tag!
+            return lambda *args, **kwargs: f"{func(*args, **kwargs)}"
 
     return decorator
 

@@ -21,22 +21,21 @@ def cache(memory_dict):
         ''' decorator function to store calcualtion in a memory cache'''
         def inner(*args, **kwargs):
             if args:
-                tpl = args
+                tuple_var = args
             if kwargs:
-                tpl = kwargs['a'], kwargs['b']
+                tuple_var = kwargs['a'], kwargs['b']
                 
             if memory_dict.get(func):
-                if memory_dict[func].get(tpl):
-                    result = memory_dict[func].get(tpl)
+                if memory_dict[func].get(tuple_var):
+                    result = memory_dict[func].get(tuple_var)
                     print("Using the cache : ", end = "")
                 else:
                     result = func(*args, **kwargs)
-                    memory_dict[func].update({tpl:result})
+                    memory_dict[func].update({tuple_var:result})
                     print("Calculating     : ", end = "")
             else:
                 result = func(*args, **kwargs)
-                memory_dict[func] = {tpl:result}
-                
+                memory_dict[func] = {tuple_var:result}
                 print("Calculating     : ", end = "")
             return result
         return inner
@@ -58,7 +57,7 @@ def validate_numeric(func):
 
 
 memory_dict = {}
-# @debug        possible to include the debug here!
+@debug        #possible to include the debug here!
 @cache(memory_dict)
 @validate_numeric
 def sum(a, b):
