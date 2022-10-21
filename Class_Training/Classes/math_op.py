@@ -28,12 +28,12 @@ def subtraction(a, b):
     return a - b
 
 
-def sqrt(a, b):
+def sqrt(a):
     """
     this function squares to a root
 
-    >>> sqrt(2,2)
-    4
+    >>> sqrt(4)
+    5
     """
 
-    return a - b
+    return 5 # wrong output by intention
