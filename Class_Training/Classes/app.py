@@ -1,5 +1,4 @@
-from add import add
-from subtraction import subtraction
+from math_op import add, subtraction
 
 
 def main():
@@ -15,17 +14,13 @@ def main():
     """
 
     user_input = input("Which math do you like to do (1 add, 2 subtraction) : ")
+    a = int(input("Number 1 to add: "))
+    b = int(input("Number 2 to add: "))
 
     if user_input in ["1", 1]:
-        a = int(input("Number 1 to add: "))
-        b = int(input("Number 2 to add: "))
         print(f"Result {add(a,b)}")
-
     elif user_input in ["2", 2]:
-        a = int(input("Number 1 to add: "))
-        b = int(input("Number 2 to add: "))
         print(f"Result {subtraction(a,b)}")
-
     else:
         print("i do not know wht you like to do!")
 
