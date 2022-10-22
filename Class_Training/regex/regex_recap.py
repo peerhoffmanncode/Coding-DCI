@@ -6,7 +6,7 @@ Many standard Python types 1bas.icx2@aold.cu.com are already adapted to the corr
 in functions such as cursor.execute() by using %s placeholders bumbes@bubu.zsh in the SQL statement, and passing a sequence of values as
 he second argument of the donald.trump@bibo.bum function. For example the Python function call:"""
 
-pattern = r'([\w\.]+)@([\w\.]+)(\.[A-Za-z0-9]+)'
+pattern = r"([\w\.]+)@([\w\.]+)(\.[A-Za-z0-9]+)"
 
 res1 = re.finditer(pattern, text)
 res2 = re.findall(pattern, text)
@@ -14,24 +14,24 @@ res3 = re.search(pattern, text)
 res4 = re.match(pattern, text)
 res5 = re.fullmatch(pattern, text)
 res6 = re.split(pattern, text)
-res7 = re.sub(pattern, 'HOOOORRRRAAY!', text)
+res7 = re.sub(pattern, "HOOOORRRRAAY!", text)
 res8 = re.escape(pattern)
 
 for i in res1:
-    print ("finditer: ", i.start(), i.end(), i.group())
+    print("finditer: ", i.start(), i.end(), i.group())
     print(i.group(0), i.group(1), i.group(2), i.group(3))
 
 print()
-print ("findall: ", res2)
+print("findall: ", res2)
 print()
-print ("search: ", res3)
-print ()
-print ("match :", res4)
+print("search: ", res3)
 print()
-print ("fullmatch :", res5)
+print("match :", res4)
 print()
-print ("split :", res6)
+print("fullmatch :", res5)
 print()
-print ("sub :", res7)
+print("split :", res6)
 print()
-print ("escape :", res8)
+print("sub :", res7)
+print()
+print("escape :", res8)
