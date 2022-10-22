@@ -1,25 +1,45 @@
 import os
 import time
 import requests
-import pprint as pprint
 import psycopg2
 
 
-def write_file(filename: str, data: list, sortlist = False) -> None:
-    """ function to write data to a file """
+# "host = localhost dbname = pokemon user = postgres password = "
+def write_to_db(connection_str: str, db_table: str, data: list) -> None:
+    # connect to the postgres db
+    database = psycopg2.connect(connection_str)
+    # create cursor for the postgres database
+    pgsql_cursor = database.cursor()
+    for idx, element in enumerate(data, start = 1):
+        # execute query at cursor
+        # table = should be pokemons for this example
+        print(f"INSERT INTO {db_table} VALUES ({idx}, '{element}');")
+        pgsql_cursor.execute(f"INSERT INTO {db_table} (id, name) VALUES ({idx}, '{element}');")
+                                INSERT INTO pokemon (name, id) VALAUES ('pokemon34', 55)
+    database.commit()
+    # fetch all data from the postgres cursor
+    # pgsql_rows = pgsql_cursor.fetchall()
+    # close pgsql cursor
+    pgsql_cursor.close()
+    # close the postgres database connection
+    database.close()
+
+
+def write_file(filename: str, data: list, sortlist=False) -> None:
+    """function to write data to a file"""
     if not data:
         # not data no file
         return
     if sortlist:
-        #sort data if forced
+        # sort data if forced
         data.sort()
     with open(filename, "w") as f:
         f.write("\n".join(data))
 
 
 def get_pokemon_names(throttle: float = 0, url: str = "") -> list:
-    """ get names of pokemons form pokeapi """
-    
+    """get names of pokemons form pokeapi"""
+
     # Terminator string to indicate end of list
     TERMINATOR = ["!$_$!"]
 
@@ -64,29 +84,13 @@ def main(url):
     # deprecated because of postgres integration
     # write_file("pokemon_list.txt", all_found_pokemons, sortlist = True)
 
+    # write to PostgreSQL database
+    # "host = localhost dbname = pokemon user = postgres password = "
+    write_to_db(
+        "host=localhost dbname=pokemon user=postgres",
+        "pokemons",
+        all_found_pokemons,
+    )
 
 if __name__ == "__main__":
-    
-    # connect to the postgres db
-    pgsql = psycopg2.connect(
-        host = "localhost"
-        database = ">>fill<<"
-        user = "postgres"
-        password = "")
-    
-    # create cursor for the postgres database
-    pgsql_cursor = pgsql.cursor()
-    
-    # execute query at cursor
-    pgsql_cursor.execute("select * from ...")
-    
-    # fetch all data from the postgres cursor
-    pgsql_rows = pgsql_cursor.fetchall()
-    
-    # close pgsql cursor
-    pgsql_cursor.close()
-    
     main("https://pokeapi.co/api/v2/pokemon")
-    
-    # close the postgres database connection
-    pgsql.close()

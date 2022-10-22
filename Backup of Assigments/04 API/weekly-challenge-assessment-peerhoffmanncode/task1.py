@@ -3,13 +3,13 @@ import time
 import requests
 
 
-def write_file(filename: str, data: list, sortlist = False) -> None:
+def write_file(filename: str, data: list, sortlist=False) -> None:
     """write data to a file"""
     if not data:
         # not data no file
         return
     if sortlist:
-        #sort data if forced
+        # sort data if forced
         data.sort()
     with open(filename, "w") as f:
         f.write("\n".join(data))
@@ -28,7 +28,6 @@ def get_pokemon_names(throttle: float = 0, url: str = "") -> list:
         time.sleep(throttle)
 
     # read from the API
-    #print(f"Requesting from API [{url}]{' ' * (80-len(url))}", end="\r")
     pokemon_name = requests.get(url).json()
     # get next url
     next_url = pokemon_name["next"]
@@ -54,14 +53,11 @@ def get_pokemon_names(throttle: float = 0, url: str = "") -> list:
 def main(url):
     """main programm"""
     MAIN_THROTTLE = 0
-    # os.system("clear")
-    # print("Accessing API of Pokemon")
-    # print(f"[{url}]")
+
     all_found_pokemons = get_pokemon_names(throttle=MAIN_THROTTLE, url=url)
     all_found_pokemons.pop()
-    # print()
-    # print(f"Found [{len(all_found_pokemons)}] Pokemons")
-    write_file("pokemon_list.txt", all_found_pokemons, sortlist = True)
+
+    write_file("pokemon_list.txt", all_found_pokemons, sortlist=True)
 
 
 if __name__ == "__main__":
