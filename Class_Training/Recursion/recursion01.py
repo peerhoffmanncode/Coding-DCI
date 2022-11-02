@@ -16,20 +16,20 @@ def factorial(n):
 print("####### recursive factorial function #######")
 for i in range(11):
     print(f"{factorial(i):10}, i -> {i}")
-    
+
 print()
-    
+
 #### Sum ####
 
 # def get_sum(sum_list, size, sum):
 #     if size == 0:
 #             return sum
-    
+
 #     # Function Call Observe sum+array[size-1]
 #     # to maintain sum of elements
 #     return get_sum(sum_list, size - 1,
 #             sum + sum_list[size - 1])
-    
+
 # print(get_sum(x, len(x), 0))
 
 print("####### recursive summing function #######")
@@ -44,7 +44,8 @@ def get_sum(sum_list: list):
     # add element [0] + element [1] -> store to element [1]
     # sum_list[1] = sum_list[0] + sum_list[1]
     # pop element [0]
-    first = sum_list.pop(0)    
+    first = sum_list.pop(0)
+    # breakpoint()
     # return current scope to next recursive call
     print (f"element to add {first}, remaining list {sum_list}")
     return first + get_sum(sum_list)
