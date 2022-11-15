@@ -1,0 +1,1 @@
+CREATE TABLE fruits(name VARCHAR(20), orgin VARCHAR(20), net_weight INT, expiration_date DATE);

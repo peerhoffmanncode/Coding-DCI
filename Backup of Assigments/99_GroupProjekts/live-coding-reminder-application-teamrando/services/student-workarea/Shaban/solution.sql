@@ -1,0 +1,1 @@
+CREATE TABLE Fruits(fruits_name varchar(255),fruits_origin varchar(255),net_weight int,expiration_date DATE);

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Remind Me</title>
+    <!-- Import Styles -->
+    <link rel="stylesheet" href="./styles.css" />
+    <!-- Import Vue.js -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="reminder">
+        <h1>Reminder Application</h1>
+        <div v-if="errorMessage" class="reminder reminder__error-message">
+          {{errorMessage}}
+        </div>
+        <form @submit.prevent="testApi">
+          <input type="text" placeholder="Title" />
+          <label for="description">Describe what we should remind you of</label>
+          <textarea
+            name="description"
+            id="description"
+            cols="30"
+            rows="10"
+          ></textarea>
+          <input type="text" placeholder="What is your name?" id="name" />
+          <button class="button">Add Reminder</button>
+        </form>
+        <div class="reminders reminders__list">
+          <ul>
+            <li v-for="reminder in reminders" :key="reminder.id">
+              <div class="reminders reminders__list-card">
+                {{reminder.title}} by {{ reminder.name || "no-name"}}<br />
+                {{ reminder.description }}
+                <button @click.prevent="remove(reminder.id)">Remove Reminder</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <script src="./app.js"></script>
+  </body>
+</html>

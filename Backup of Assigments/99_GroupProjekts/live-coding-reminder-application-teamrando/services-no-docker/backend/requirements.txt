@@ -1,0 +1,10 @@
+Flask==2.2.2
+Flask-Cors==3.0.10
+flask-migrate==2.7.0
+Flask-SQLAlchemy==2.5.1
+gunicorn==20.1.0
+psycopg2-binary==2.9.5
+python-dotenv==0.21.0
+black==22.10.0
+redis==4.3.4
+remote-pdb==2.1.0

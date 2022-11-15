@@ -2,10 +2,10 @@ import unittest
 import datetime
 
 # import functions from solutions
-from app_peer import read_database_version
-from app_peer import get_warehouse_detail, get_employee_detail
-from app_peer import update_employee_experience
-from app_peer import get_specialist_employee_list
+from backend.app_peer import read_database_version
+from backend.app_peer import get_warehouse_detail, get_employee_detail
+from backend.app_peer import update_employee_experience
+from backend.app_peer import get_specialist_employee_list
 
 
 class TestCalcSolution(unittest.TestCase):
@@ -48,3 +48,4 @@ class TestCalcSolution(unittest.TestCase):
                 (108, "Karen", 4, datetime.date(2011, 10, 17), "Driver", 30000, None),
             ],
         )
+

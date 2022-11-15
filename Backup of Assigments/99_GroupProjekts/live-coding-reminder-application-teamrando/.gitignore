@@ -1,0 +1,11 @@
+__pycache__
+*.pyc
+.DS_Store
+.idea
+.vscode
+node_modules/
+venv
+env
+package-lock.json
+yarn.lock
+dist/

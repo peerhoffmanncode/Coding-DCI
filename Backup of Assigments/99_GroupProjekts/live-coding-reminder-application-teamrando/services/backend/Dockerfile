@@ -11,9 +11,9 @@ WORKDIR /code
 
 # add and install requirements
 COPY ./requirements.txt /code/requirements.txt
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt --no-cache-dir
 
 # add app
 COPY . /code
 
-CMD ["python", "app_peer.py"]
+CMD ["python", "app.py"]
