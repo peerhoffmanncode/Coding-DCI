@@ -31,13 +31,29 @@ INIT_SCRIPT = [
             ('108', 'Karen', '4', '2011-10-17', 'Driver', '30000', NULL);",
 ]
 
-
 # Postgres cention constants
 USER = "postgres"
 PASSWORD = "postgres"
 HOST = "postgres"
-PORT = "5433"
+PORT = "5432"
 DB = "warehouse_db"
+
+# Executing delay to wait for POSTGRES SERVICE to initialize!
+# without this delay, the program might execute before db is ready to be accessed.
+db_not_alaive = True
+while db_not_alaive:
+    try:
+        connection = psycopg2.connect(
+            user=USER,
+            password=PASSWORD,
+            host=HOST,
+            port=PORT,
+            database=DB,
+        )
+        db_not_alaive = False
+        connection.close()
+    except psycopg2.OperationalError:
+        print("waiting for db to init ...", end="\r")
 
 
 def write_to_database(execution_script=None) -> None:
@@ -73,7 +89,7 @@ def read_from_database(execution_script=None) -> list:
         user=USER,
         password=PASSWORD,
         host=HOST,
-        port=POST,
+        port=PORT,
         database=DB,
     )
     curr = connection.cursor()
@@ -180,6 +196,7 @@ def main():
     write_to_database(INIT_SCRIPT)
 
     # get postgres version
+    print("Question 1: Connect to your Postgres database server and print its version.")
     print(f"Postgres Version: {read_database_version()}")
     print()
     print()
@@ -262,6 +279,12 @@ def main():
 
 
 if __name__ == "__main__":
+    print()
+    print("@" * 80)
+    print("@ Executing python app to access PostgreSQL database !")
+    print("@" * 80)
+    print()
+
     main()
     # confirm that the database has changed
     print("successfully interacted with database!")

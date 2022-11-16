@@ -1,13 +1,12 @@
 version: '3.9'
 
 services:
-  api:
+  python-app:
     build:
-      context: ./backend
+      context: ./app
       dockerfile: Dockerfile
-    ports:
-      - "5050:5000"
     environment:
+      - POSTGRES_HOST=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     depends_on:
@@ -15,15 +14,30 @@ services:
     networks:
       - app-tier
 
+  python-test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    depends_on:
+      - postgres
+      - python-app
+    networks:
+      - app-tier
+
   postgres:
     build:
       context: ./db
       dockerfile: Dockerfile
-    ports:
-      - "5432:5432"
     environment:
+      - POSTGRES_HOST=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
     networks:
       - app-tier
 
