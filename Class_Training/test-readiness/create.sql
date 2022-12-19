@@ -1,0 +1,9 @@
+DROP DATABASE IF EXISTS november;
+
+CREATE DATABASE november;
+
+\c november
+
+CREATE TABLE IF NOT EXISTS users (name VARCHAR(255), location VARCHAR(255), weight FLOAT);
+
+ALTER TABLE users ADD COLUMN id SERIAL PRIMARY KEY;

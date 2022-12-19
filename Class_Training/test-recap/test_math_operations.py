@@ -5,7 +5,7 @@ import unittest
 from math_operations import add, sub
 
 
-class MathTest(unittest.TestCase):
+class MathTest(unittest.TestCase): 
     def test_add(self):
         result = add(2, 2)
         expected_result = 4

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        table, th, td {border: 1px solid black;
+            border-collapse: collapse;}
+    </style>
+    <title>Reminder</title>
+  </head>
+  <body>
+    <header>
+      <h1>Reminers</h1>
+    </header>
+    <main>
+      <table>
+        <tr>
+            <th/>ID</th>
+            <th/>Title</th>
+            <th/>Description</th>
+            <th/>Delete</th>
+            <th/>Update</th>
+        </tr>
+        {% for reminder in reminders %}
+        <tr>
+            <td>{{ reminder.id }}</td>
+            <td>{{ reminder.title }}</td>
+            <td>{{ reminder.description }}</td>
+            <td>
+              <form action="/delete" method="POST">
+                <input type="hidden" name="id" value="{{ reminder.id }}" />
+                <input type="hidden" name="title" value="{{ reminder.title }}" />
+                <input type="hidden" name="description" value="{{ reminder.description }}" />
+                <input type="submit" value="delete reminder">
+              </form>
+            </td>
+            <td>
+              <form action="/update" method="POST">
+                <input type="hidden" name="id" value="{{ reminder.id }}" />
+                <input type="hidden" name="title" value="{{ reminder.title }}" />
+                <input type="hidden" name="description" value="{{ reminder.description }}" />
+                <input type="submit" value="Update reminder">
+              </form>
+            </td>
+        </tr>
+        {% endfor %}
+      </table>
+      <br>
+      <br>
+      <br>
+      <br>
+      <form action="/add-reminder" method="POST">
+        Title: <input type="text" name="title" id="title">
+        Description: <input type="text" name="description" id="description">
+        <button>Add reminder</button>
+      </form>
+
+
+    </main>
+  </body>
+</html>

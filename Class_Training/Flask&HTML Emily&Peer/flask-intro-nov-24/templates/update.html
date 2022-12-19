@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+    </style>
+    <title>Reminder</title>
+  </head>
+  <body>
+    <header>
+      <h1>Reminers</h1>
+      {{ id }} {{ title }} {{ description }}
+    </header>
+    <main>
+      <form action="" method="POST">
+        Title:
+        <input type="text" name="title" id="title" value="{{ title }}" />
+        Description:
+        <input
+          type="text"
+          name="description"
+          id="description"
+          value="{{ description }}"
+        />
+        <form action="/updatedexecute" method="POST">
+          <button name="update">Update</button>
+        </form>
+        <form action="/" method="POST">
+          <button name="cancel">Cancel</button>
+        </form>
+      </form>
+    </main>
+  </body>
+</html>

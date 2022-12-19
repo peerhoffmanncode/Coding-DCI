@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Reminder</h1>
+<h4> <p>Title: {{ reminder.title }}</p></h4>
+<p>Description: {{ reminder.description }}</p>
+
+<form action="{% url 'update' reminder.id %}" method="get">
+    <button>Update reminder</button>
+</form>
+<br>
+
+<form action="{% url 'index' %}" method="get">
+    <button>Go to home</button>
+</form>
+{% endblock %}

@@ -1,5 +1,7 @@
+from unittest import mock
 import unittest
-import mock
+
+# import mock
 import app
 
 ### Mocking approach !! ###

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking App</title>
+</head>
+<body>
+    <h1>Welcome to the capital inc. Bank ;-)</h1>
+    <br>
+    <table>
+        <tr>
+            <th>Customer Name</th>
+            <th>Ballance</th>
+            <th>Customer since</th>
+            <th>Edit</th>
+        </tr>
+        {% for customer in customers %}
+            <tr>
+                <td>{{customer.name}}</td>
+                <td>{{customer.amount}}€</td>
+                <th>{{customer.joining_date}}</th>
+                <th>
+                    <form action="edit/{{customer.pk}}/" method="GET">
+                        <button>Edit</button>
+                    </form>
+                </th>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <form action="add-customer/" method="GET">
+        <button>Add a new Customer</button>
+    </form>
+    <br>
+    <form action="transfer/" method="GET">
+        <button>Transfer money</button>
+    </form>
+</body>
+</html>

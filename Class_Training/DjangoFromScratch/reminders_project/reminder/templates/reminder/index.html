@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Some funbky Reminders!</title>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Creation date</th>
+        <th>Due date</th>
+        <th>Done</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+      {% for item in reminders %}
+      <tr>
+        <td>{{ item.title }}</td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.creation_date }}</td>
+        <td>{{ item.due_date }}</td>
+        <td>
+            {% if item.done == True %}
+            Done
+            {% else %}
+            TODO!
+            {% endif %}
+        </td>
+        <td>
+            <form action="/reminders/{{ item.pk }}/update/" method="GET">
+                <button> Update </button>
+            </form>
+        </td>
+        <td>
+            <form action="/reminders/{{ item.pk }}/delete/" method="DELETE">
+                <button> Delete </button>
+            </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <form action="/reminders/add/" method="GET">
+        <button> Add a new reminder </button>
+    </form>
+
+  </body>
+</html>

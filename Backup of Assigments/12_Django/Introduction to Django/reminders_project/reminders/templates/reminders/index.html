@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Reminders</h1>
+    <form action=""></form>
+    <div style="padding: 1rem; margin-left: 3rem">
+      <ol>
+        {% for r in reminders %}
+        <li>
+          <h4>{{r.title}}</h4>
+          <p>{{r.description}}</p>
+          <br />
+        </li>
+        {% endfor %}
+      </ol>
+    </div>
+  </body>
+</html>
