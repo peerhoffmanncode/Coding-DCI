@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Detail view for {{house.address}}</h1>
+<form action="{% url 'house-edit' location.pk house.pk %}" method="get">
+    <button>Edit this house</button>
+</form>
+<form action="{% url 'house-delete' location.pk house.pk %}" method="get">
+    <button>Delete this house</button>
+</form>
+
+<li>area_unit {{house.area_unit}}</li>
+<li>bathrooms {{house.bathrooms}}</li>
+<li>bedrooms {{house.bedrooms}}</li>
+<li>home_size {{house.home_size}}</li>
+<li>home_type {{house.home_type}}</li>
+<li>last_sold_date {{house.last_sold_date}}</li>
+<li>last_sold_price {{house.last_sold_price}}</li>
+<li><a href="{{house.link}}">link</a></li>
+<li>price {{house.price}}</li>
+<li>property_size {{house.property_size}}</li>
+<li>rent_price {{house.rent_price}}</li>
+<li>rentzestimate_amount {{house.rentzestimate_amount}}</li>
+<li>rentzestimate_last_updated {{house.rentzestimate_last_updated}}</li>
+<li>tax_value {{house.tax_value}}</li>
+<li>tax_year {{house.tax_year}}</li>
+<li>year_built {{house.year_built}}</li>
+<li>zestimate_amount {{house.zestimate_amount}}</li>
+<li>zestimate_last_updated {{house.zestimate_last_updated}}</li>
+<li>zillow_id {{house.zillow_id}}</li>
+<li>address {{house.address}}</li>
+<li>city {{house.city}}</li>
+<li>state {{house.state}}</li>
+<li>zipcode {{house.zipcode}}</li>
+
+<br>
+<br>
+<a href="{% url 'houses-list' location.pk %}">back to list</a>
+{% endblock %}

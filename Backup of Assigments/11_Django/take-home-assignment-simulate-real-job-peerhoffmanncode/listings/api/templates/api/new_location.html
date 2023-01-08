@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>
+    Add a location
+</h1>
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button>Add location</button>
+</form>
+
+<form action="{% url 'location-list' %}" method="get">
+    <button>Cancel</button>
+</form>
+{% endblock %}

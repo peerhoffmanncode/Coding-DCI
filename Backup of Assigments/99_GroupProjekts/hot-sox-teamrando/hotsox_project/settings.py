@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import os
 
+if os.path.isfile("env.py"):
+    import env
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,13 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-%syvyzq4@1aqqs+0y9%2olp&vr3kfi^50eg=ngx^b*xyfh+-hm"
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
 # Application definition
 
@@ -37,9 +39,46 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
     "django.contrib.staticfiles",
+    "allauth.socialaccount.providers.google",
     "app_home",
+    "app_users",
 ]
+
+# Social accounts login
+SOCIALACCOUNT_LOGIN_ON_GET = False
+AUTHENTICATION_BACKENDS = ["allauth.account.auth_backends.AuthenticationBackend"]
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        },
+    }
+}
+
+# Requirements for Allauth support
+SITE_ID = 1
+
+# need to prevent "false email addresses to lead to a crash!"
+# TODO: remove this and find proper error handling
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# add these constants to define route for login/ logout destinations
+ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
+
+
+# register the hotsox_user as user AllAuth model!
+AUTH_USER_MODEL = "app_users.User"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -49,6 +88,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django.contrib.sites.middleware.CurrentSiteMiddleware",
 ]
 
 ROOT_URLCONF = "hotsox_project.urls"
@@ -56,7 +96,7 @@ ROOT_URLCONF = "hotsox_project.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -88,30 +128,17 @@ if os.getenv("GITHUB_WORKFLOW"):
         }
     }
 else:
-    if os.getenv("DB_NAME"):
-        # check if we have ENV Vars set e.g. Docker?
-        DATABASES = {
-            "default": {
-                "ENGINE": "django.db.backends.postgresql",
-                "NAME": os.getenv("DB_NAME"),
-                "USER": os.getenv("DB_USER"),
-                "PASSWORD": os.getenv("DB_PASSWORD"),
-                "HOST": os.getenv("DB_HOST"),
-                "PORT": os.getenv("DB_PORT"),
-            }
+    # check if we have ENV Vars set e.g. env.py/Dockerfile/...?
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.getenv("DB_NAME"),
+            "USER": os.getenv("DB_USER"),
+            "PASSWORD": os.getenv("DB_PASSWORD"),
+            "HOST": os.getenv("DB_HOST"),
+            "PORT": os.getenv("DB_PORT"),
         }
-    else:
-        # main fallback - we need a local postgres db called "hotsox_db"
-        DATABASES = {
-            "default": {
-                "ENGINE": "django.db.backends.postgresql",
-                "NAME": "hotsox_db",
-                "USER": "postgres",
-                "PASSWORD": "postgres",
-                "HOST": "localhost",
-                "PORT": "5432",
-            }
-        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -131,6 +158,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# initial work to use jwt token validation soon!
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+    ),
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
@@ -142,7 +177,6 @@ TIME_ZONE = "Europe/Berlin"
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/

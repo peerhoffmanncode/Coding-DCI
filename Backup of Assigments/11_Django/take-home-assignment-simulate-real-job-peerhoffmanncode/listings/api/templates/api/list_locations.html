@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Locations</h1>
+<h2>These are all the locations where you can find houses</h2>
+<form action="{% url 'location-create' %}" method="get">
+    <button>Create a location</button>
+</form>
+<br>
+{% for location in locations %}
+<li><a href="{% url 'houses-list' location.pk %}">{{ location }}</a></li>
+{% endfor %}
+{% endblock %}

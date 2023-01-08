@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>
+    Update house {{house.address}}
+</h1>
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button>Update house</button>
+</form>
+
+<form action="{% url 'house-detail' house.location.pk house.pk %}" method="get">
+    <button>Cancel</button>
+</form>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>All reminders</h1>
+<form action="new" method="get">
+    <button>Create a reminder</button>
+</form>
+{% for reminder in reminders %}
+<p><a href="{% url 'detail' reminder.id %}"> {{ reminder.title }} / {{ reminder.description }} </a></p>
+{% endfor %}
+{% endblock %}

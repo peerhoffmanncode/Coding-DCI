@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Houses</h1>
+<h2>These are all the houses we have in this location</h2>
+<h3>location: {{houses.0.location}}</h3>
+
+<form action="{% url 'location-edit' location.pk %}" method="get">
+    <button>Edit this location</button>
+</form>
+
+<form action="{% url 'location-delete' location.pk %}" method="get">
+    <button>Delete this location</button>
+</form>
+
+<form action="{% url 'house-create' location.pk %}" method="get">
+    <button>Create a new house</button>
+</form>
+
+<br>
+{% for house in houses %}
+<li><a href="{{house.pk}}">{{ house }}</a></li>
+{% endfor %}
+<br>
+<br>
+<a href="{% url 'location-list' %}">back to list</a>
+{% endblock %}
