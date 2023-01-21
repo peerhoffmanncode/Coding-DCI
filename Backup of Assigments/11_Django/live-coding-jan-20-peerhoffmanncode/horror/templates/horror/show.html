@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Horoscope for {{ sign.title }} </h1>
+<h3>todays date is {{ date }} </h3>
+<p>Your information {{ horoscope }}</p>
+
+<a href="{% url 'horoscope' %}">Go back</a>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfer Money</title>
+</head>
+
+<body>
+    <h1>Send Money Online</h1>
+    <h3>See the transaction</h3>
+    <p>Send from {{ sender_country.name }} {{ sender_country.flag }} as currency of {{ sender_currency.name }} [{{sender_currency_sym}}]</p>
+    <p>Send to {{ receiver_country.name }} {{ receiver_country.flag }} as currency of {{ receiver_currency.name }} [{{receiver_currency_sym}}]</p>
+    <p>Total of {{ money_amount }}{{receiver_currency_sym}} {{ receiver_currency.name }} was send.</p>
+    <p>Conversion rate of {{ conversion_rate }}[{{receiver_currency_sym}}] {{receiver_currency.name}} per 1.0[{{sender_currency_sym}}]</p>
+    <a href="/">send more?</a>
+
+</body>
+
+</html>

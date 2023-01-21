@@ -44,11 +44,17 @@ jobs:
         run: python --version
       - name: Install requirements # install application requirements
         run: pip install -r requirements.txt
-      - name: Check pep8 with black
-        run: python -m black --check .
       - name: Run Database MakeMigrations # run migrations to create table in side car db container
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          GOOGLE_SECRET: ${{ secrets.GOOGLE_SECRET }}
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
         run: python manage.py makemigrations
       - name: Run Database Migrations # run migrations to create table in side car db container
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          GOOGLE_SECRET: ${{ secrets.GOOGLE_SECRET }}
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
         run: python manage.py migrate
       - name: Run Django Unittests # running tests
         env:
@@ -56,6 +62,8 @@ jobs:
           GOOGLE_SECRET: ${{ secrets.GOOGLE_SECRET }}
           GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
         run: python manage.py test
+      - name: Check pep8 with black
+        run: python -m black --check .
 
   # package-job: # package job for building and publishing docker images
   #   runs-on: ubuntu-latest

@@ -1,0 +1,13 @@
+asgiref==3.6.0
+certifi==2022.12.7
+charset-normalizer==3.0.1
+country-list==1.0.0
+countryinfo==0.1.2
+Django==4.1.5
+forex-python==1.8
+idna==3.4
+pycountry==22.3.5
+requests==2.28.2
+simplejson==3.18.1
+sqlparse==0.4.3
+urllib3==1.26.14

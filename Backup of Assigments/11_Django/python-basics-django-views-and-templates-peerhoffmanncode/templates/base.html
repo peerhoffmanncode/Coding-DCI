@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+<header>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Some project</title>
+    <p>the craziness of a header to be seen</p>
+</header>
+
+<body>
+    <li>
+        <a href="{% url 'home' %}">Go to Home</a>
+    </li>
+    <li>
+        <a href="{% url 'notes:home' %}">Go to Notes</a>
+    </li>
+    <li>
+        <a href="/todo/1">Go to Todo</a>
+        <hr>
+    </li>
+    {% block content %}
+    {% endblock %}
+</body>
+<footer>
+    <p>some amazing footer over here...</p>
+</footer>
+
+</html>

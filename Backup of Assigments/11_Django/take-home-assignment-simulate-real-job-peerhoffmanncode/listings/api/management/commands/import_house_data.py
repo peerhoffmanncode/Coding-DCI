@@ -36,7 +36,7 @@ class Command(BaseCommand):
         pass
 
     def handle(self, *args, **options):
-        # TODO: implement your import command
+        # Done: implement your import command
         path = os.getcwd() + "/../sample-data/data.csv"
         print("Importing data to database...")
 

@@ -1,0 +1,14 @@
+{% extends 'notes_base.html' %}
+{% load filters %}
+{% block notes_content %}
+<h1>Note number {{id}}</h1>
+
+<h3>Section {{note.section | linkable_section | safe}}</h3>
+<p>{{note.text | safe }}</p>
+
+
+<a href="{% url 'notes:details' id|add:-1 %}">Previous note</a>'
+<a href="{% url 'notes:details' id|add:+1 %}">Next note</a>'
+
+<a href="{% url 'notes:home' %}">Back to home</a>
+{% endblock %}

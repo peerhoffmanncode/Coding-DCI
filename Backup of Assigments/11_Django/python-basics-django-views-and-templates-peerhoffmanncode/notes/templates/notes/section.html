@@ -1,0 +1,16 @@
+{% extends 'notes_base.html' %}
+
+{% block notes_content %}
+<h3>{{ title|safe }}</h3>
+
+{% for i in item %}
+<ol>
+    {{i|safe}}
+</ol>
+{% endfor %}
+<li>
+    <a href="{{link}}">Back to home</a>
+</li>
+{% endblock %}
+
+
