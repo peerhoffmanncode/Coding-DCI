@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Creat some fancy tweet ...</h1>
+<p class="lead">Tweet on {{ user.username.title}}</p>
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button>send</button>
+</form>
+{% endblock %}

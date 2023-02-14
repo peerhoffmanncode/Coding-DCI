@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>DCI Twitter, better than Elon's</h1>
+<p class="lead">Welcome to DCI Twitter</p>
+
+{% if request.user.is_authenticated %}
+{% for tweet in request.user.tweets.all reversed %}
+<p class="lead">Tweet by {{ user.username.title}}</p>
+<p>{{tweet.message}}</p>
+<p>send @{{tweet.created_at}}</p>
+
+<a href="{% url 'update-tweet' tweet.pk %}">-Update tweet-</a>
+<a href="{% url 'delete-tweet' tweet.pk %}">-Delete tweet-</a>
+<hr>
+{% endfor %}
+
+{% else %}
+<p>please log in or create an account</p>
+{% endif %}
+
+{% endblock %}

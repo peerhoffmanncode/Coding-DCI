@@ -1,0 +1,8 @@
+<h1>List of feedback from customers</h1>
+
+
+<form method="POST">
+    {% csrf_token%}
+    {{form.as_p}}
+    <button>submit</button>
+</form>

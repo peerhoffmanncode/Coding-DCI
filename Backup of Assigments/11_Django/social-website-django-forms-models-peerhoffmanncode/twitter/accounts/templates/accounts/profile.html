@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<h1>Following</h1>
+<hr>
+<br>
+{% if followers %}
+Your are following
+{% for follower in followers%}
+<h3>{{ follower }}</h3>
+<form action="" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="unfollow" value="{{ follower }}">
+    <button class="btn btn-primary">Unfollow</button>
+</form>
+{%endfor%}
+{% else %}
+<div class="alert alert-warning">
+    You do not have any followers
+</div>
+{% endif %}
+
+{% if user_profiles %}
+<br>
+<hr>
+<h2>System Users</h2>
+
+<div class="alert alert-primary">
+    You can follow some of the users below!
+</div>
+<hr>
+{% for profile in user_profiles %}
+<div>
+    <h3>{{ profile.user }}</h3>
+    {% if profile.bio %}<div>{{ profile.bio }}</div>{% endif %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="follow" value="{{ profile.user }}">
+        <button class="btn btn-primary">Follow</button>
+    </form>
+</div>
+{% endfor %}
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>What a nice tweet</h1>
+<br>
+<p class="lead">Tweet by {{ user.username.title}}</p>
+
+<p>{{tweet.message}}</p>
+<p>send @{{tweet.created_at}}</p>
+
+
+<form action="{% url 'create-tweet' %}" method="get">
+    <button>tweet again</button>
+</form>
+{% endblock %}

@@ -7,6 +7,7 @@ from datetime import date, timedelta
 from cloudinary import uploader
 from cloudinary.models import CloudinaryField
 from django.db.models import Q
+import uuid
 
 # CHOICES FOR USER
 from .models_choices import (
@@ -27,35 +28,30 @@ class User(AbstractUser):
     # username, password, password_conf, email, first_name, last_name,
     # joining_date, last_login, is_staff, is_active, is_superuser
 
-    info_about = models.TextField(help_text="Insert your story in here.", blank=True)
+    info_about = models.TextField(blank=True)
     info_birthday = models.DateField(default=timezone.now, blank=False)
     info_gender = models.CharField(max_length=10, choices=GENDER_CHOICES, blank=False)
     # info_gender_interest = models.CharField(max_length=10, choices=GENDER_CHOICES, blank=False)
-    location_city = models.CharField(
-        help_text="Where do you live?", max_length=255, blank=False
-    )
+    location_city = models.CharField(max_length=255, blank=False)
     location_latitude = models.FloatField(blank=True, null=True)
     location_longitude = models.FloatField(blank=True, null=True)
+    notification = models.BooleanField(default=True)
     social_instagram = models.URLField(
-        help_text="Url to your Instagram profile.",
         max_length=255,
         blank=True,
         null=True,
     )
     social_facebook = models.URLField(
-        help_text="Url to your Facebook profile.",
         max_length=255,
         blank=True,
         null=True,
     )
     social_twitter = models.URLField(
-        help_text="Url to your Twitter profile.",
         max_length=255,
         blank=True,
         null=True,
     )
     social_spotify = models.URLField(
-        help_text="Url to your Spotify profile.",
         max_length=255,
         blank=True,
         null=True,
@@ -175,6 +171,7 @@ class UserMatch(models.Model):
     # User.matched.other.objects.all() = all Other user !
     user = models.ForeignKey(User, related_name="him", on_delete=models.CASCADE)
     other = models.ForeignKey(User, related_name="matched", on_delete=models.CASCADE)
+    chatroom_uuid = models.UUIDField()
 
 
 class Sock(models.Model):
@@ -398,9 +395,12 @@ class MessageChat(models.Model):
     other = models.ForeignKey(
         User, related_name="chat_receiving", on_delete=models.CASCADE
     )
-    subject = models.CharField(max_length=255, blank=False)
-    sent_date = models.DateField(auto_now_add=True, blank=False)
-    seen_date = models.DateField(blank=True, null=True)
+    message = models.CharField(max_length=255, blank=False)
+    sent_date = models.DateTimeField(auto_now_add=True, blank=False)
+    seen_date = models.DateTimeField(blank=True, null=True)
 
     def __str__(self) -> str:
-        return f"<Cat from {self.user} to {self.other} Subject: {self.subject} @{self.sent_date}>"
+        if self.seen_date:
+            return f"<Chat from {self.user} to {self.other} Subject: {self.message} sent@{self.sent_date.time()} / seen@{self.seen_date.time()}>"
+        else:
+            return f"<Chat from {self.user} to {self.other} Subject: {self.message} sent@{self.sent_date.time()} / UNSEEN YET!"
