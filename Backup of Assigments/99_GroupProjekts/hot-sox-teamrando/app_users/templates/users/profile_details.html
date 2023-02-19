@@ -5,25 +5,82 @@
 
 <h3>{{user.username.title}}'s Profile</h3>
 
+{% if user.get_picture_urls %}
 <div class="circle-container">
-    {% if user.get_all_pictures.0 %}
-    <div class="circle-img">
+    {% for picture_url in user.get_picture_urls %}
+    <div class="circle-img" id="profile-pic-{{ forloop.counter }}">
         <a href="{% url 'app_users:user-profile-picture' %}">
-            <img src="{{ user.get_picture_urls.0 }}" alt="">
+            <img src="{{ picture_url }}" alt="">
         </a>
     </div>
-    {% else %}
-    <a href="{% url 'app_users:user-profile-picture' %}" class="btn">Add Picture</a>
-    {% endif %}
+    {% endfor %}
 </div>
+{% else %}
+<a href="{% url 'app_users:user-profile-picture' %}" class="btn">Add Picture</a>
+{% endif %}
 
 <div class="row">
-    <div class="col-md">
-        {% for key, value in user.to_json.items %}
-        {% if value %}
-        <p><strong>{{ key.title }}:</strong> {{ value }}</p>
+    {% if user_detail.fullname %}
+    <span class="col-md-6" style="float:left; display:inline; word-wrap:break-word;">
+        <strong>{{ user_detail.fullname }}</strong>
+    </span>
+    {% else %}
+    <span class="col-md-6" style="float:left; display:inline; word-wrap:break-word;">
+        <strong>Anonymous Socker</strong>
+    </span>
+    {% endif %}
+    <span class="col-md-6" style="float:right; display:inline; word-wrap:break-word;">
+        <p>{{ user_detail.age }} years old</p>
+    </span>
+    <span class="col-md-6" style="float:left; display:inline; word-wrap:break-word;">
+        <p>{{ user_detail.email }}</p>
+    </span>
+    <span class="col-md-6" style="float:right; display:inline; word-wrap:break-word;">
+        <p>Lives in {{ user_detail.city }}</p>
+    </span>
+    <span class="col-md-6"><strong>About</strong></span>
+    <span class="col-md-12" style=" word-wrap:break-word;">
+        <p>{{ user_detail.about }}</p>
+    </span>
+
+    <span class="col-md-6" style="float:left; display:inline; word-wrap:break-word;">
+        {% if user_detail.instagram %}
+        <a href="{{ user_detail.instagram }}" target="_blank"><i class="fa-brands fa-instagram"></i></a>
         {% endif %}
-        {% endfor %}
-    </div>
+        {% if user_detail.facebook %}
+        <a href="{{ user_detail.facebook }}" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        {% endif %}
+        {% if user_detail.twitter %}
+        <a href="{{ user_detail.twitter }}" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+        {% endif %}
+        {% if user_detail.spotify %}
+        <a href="{{ user_detail.spotify }}" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+        {% endif %}
+    </span>
+
 </div>
+<br>
+{{ map|safe }}
+
+<script>
+    const pictures = document.querySelectorAll('.circle-img');
+
+    // Hide all pictures at the beginning
+    for (let i = 1; i < pictures.length; i++) {
+        pictures[i].style.display = 'none';
+    }
+
+    function changePicture() {
+        let pictures = document.querySelectorAll('.circle-img');
+        let index = 0;
+        setInterval(function () {
+            pictures[index].style.display = 'none';
+            index = (index + 1) % pictures.length;
+            pictures[index].style.display = 'block';
+        }, 5000);
+    }
+
+    changePicture();
+</script>
+
 {% endblock %}
