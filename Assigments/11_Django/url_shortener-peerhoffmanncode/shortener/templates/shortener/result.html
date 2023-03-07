@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Url shortener</title>
+</head>
+
+<body>
+    <h1>This is your shortened URL</h1>
+
+    <h3>Use this url for your reference :</h3>
+    <h3><a href="/re/{{url.short_url}}">http://127.0.0.1/re/{{ url.short_url}}</a></h3>
+    <p>this url was created: {{ url.created }}</p>
+    <p>it will expire {{ url.expires }}</p>
+
+    <p>Original url:</p>
+    <p>{{ url.source_url}}</p>
+
+    <a href="/">Back to the shortener</a>
+
+</body>
+
+</html>
