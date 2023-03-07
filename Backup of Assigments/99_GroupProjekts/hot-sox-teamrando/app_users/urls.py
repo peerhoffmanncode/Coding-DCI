@@ -10,7 +10,9 @@ urlpatterns = [
         name="user-profile-details",
     ),
     path(
-        "profile/update/", views.UserProfileUpdate.as_view(), name="user-profile-update"
+        "profile/update/",
+        views.UserProfileUpdate.as_view(),
+        name="user-profile-update",
     ),
     path(
         "profile/picture/",
@@ -27,7 +29,16 @@ urlpatterns = [
         views.UserMatchProfileDetails.as_view(),
         name="user-match-profile-details",
     ),
-    path("sock/overview/", views.SockProfileOverview.as_view(), name="sock-overview"),
+    path(
+        "match/delete/<str:username>/",
+        views.UserMatchDelete.as_view(),
+        name="user-match-delete",
+    ),
+    path(
+        "sock/overview/",
+        views.SockProfileOverview.as_view(),
+        name="sock-overview",
+    ),
     path(
         "sock/select/",
         views.SockSelection.as_view(),
